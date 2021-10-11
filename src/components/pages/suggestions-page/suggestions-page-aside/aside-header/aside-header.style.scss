@@ -1,0 +1,92 @@
+@mixin transition-ease{
+    transition: all 0.9s ease-in-out;
+}
+
+.aside-header{
+    background: url('../../../../../assets/smallbackground-header.png') no-repeat center/cover;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    visibility: visible;
+    overflow: hidden;
+
+    &__title{
+        margin: 0;
+        color: #fff;
+        letter-spacing: -0.19px;
+        font-size: 15px;
+    }
+
+    p{
+        margin: 0;
+        color: #fff;
+        letter-spacing: 0;
+        font-size: 13px;
+    }
+}
+
+@media screen and (min-width:768px){
+    .aside-header{
+        display: block;
+        width: 223px;
+        height: 178px;
+        border-radius: 10px;
+    }
+    .aside-header-menu{
+        display: none;
+    }
+}
+
+.aside-header-menu {
+    position: relative;
+    height: 20px;
+    width: 28px;
+    cursor: pointer;
+    @include transition-ease;
+
+
+    &__btn {
+        position:absolute;
+        right: 0;
+        top: 0.5rem;
+        width: 23px;
+        height: 3px;
+        background: #fff;
+        @include transition-ease;
+
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            width: 23px;
+            height: 3px;
+            background: #fff;
+            @include transition-ease;
+        }
+        &::after {
+            content: '';
+            position: absolute;
+            top: 8px;
+            width: 23px;
+            height: 3px;
+            background: #fff;
+            @include transition-ease;
+        }
+
+        &.open{
+            transform: rotate(720deg);
+            background: transparent;
+
+            &::before {
+                width: 25px;
+                transform: rotate(45deg) translate(5px, 8px);
+            }
+            &::after {
+                width: 25px;
+                transform: rotate(-45deg) translate(3px, -7px);
+            }
+        }
+    }
+}

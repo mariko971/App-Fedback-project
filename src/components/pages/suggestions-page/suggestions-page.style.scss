@@ -1,0 +1,21 @@
+
+$navy-blue-light70-clr: #f2f4ff;
+
+@media screen and(min-width: 768px){
+    .suggestions-page-wrapper{
+        display: flex;
+        flex-direction: column;
+        padding: 0 39.5px;
+    }
+}
+@media screen and(min-width: 996px){
+    .suggestions-page-wrapper{
+        flex-direction: row;
+        gap: 1rem;
+        padding: 39.5px;
+        max-width: 1175px;
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+
