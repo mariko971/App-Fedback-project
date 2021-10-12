@@ -78,7 +78,25 @@ const appDataReducer = (state = app_Data, action)=>{
                 productRequests: [...newproductRequests]
             }
         }
-
+        case 'SAVE_CHANGES':{
+            const req = state.productRequests.find(request=>request.id===action.payload.id);
+            const reqIndex = state.productRequests.indexOf(req);
+            let newproductRequests = [...state.productRequests];            
+            newproductRequests[reqIndex]={...action.payload.changes};
+            return{
+                ...state,
+                productRequests: [...newproductRequests]
+            }
+        }
+        case 'DELETE_FEEDBACK':{
+            let newproductRequests = [...state.productRequests];
+            const req = newproductRequests.findIndex(request=>request.id===action.payload);
+            newproductRequests.splice(req,1);
+            return{
+                ...state,
+                productRequests: [...newproductRequests] 
+            }
+        }
 
         default: return state;
     }

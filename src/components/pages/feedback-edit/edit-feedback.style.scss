@@ -1,0 +1,271 @@
+
+$navy-blue-clr: #373f68;
+$navy-blue-light30-clr: #3a4374;
+$navy-blue-light50-clr: #647196;
+$navy-blue-light70-clr: #f2f4ff;
+$navy-blue-light80-clr: #f7f8fd;
+$blue-clr: #4661e6;
+$blue-light-clr: #62bcfa;
+$pink-clr: #ad1fea;
+$orange-light-clr: #f49f85;
+$white-clr: #ffffff;
+$red-clr: #D73737;
+$delete-hover-clr: #f16262;
+$btn-hover-clr: #C75AF6;
+
+.edit-feedback-container{
+    background: $navy-blue-light70-clr;
+    max-width: 540px;
+    margin: 0 auto;
+    padding: 30px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .edit-back-link{
+        cursor: pointer;
+        margin-bottom: 3rem;
+
+        &-txt{
+            font-size: 13px;
+            font-weight: 700;
+            color: $navy-blue-light50-clr;
+            padding-left: 0.5rem;
+        }
+    } 
+    
+    .edit-feedback{
+        background: $white-clr;
+        border-radius: 10px;
+        padding: 20px 25px;
+        position: relative;
+
+        &-icon{
+            position: absolute;
+            top: -20px;
+            
+            img{
+                width: 40px;
+            }
+        }
+
+        &-header{
+            font-size: 18px;
+            font-weight: 700;
+            color: $navy-blue-light30-clr;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        &-input{
+            margin-bottom: 1.5rem;
+
+            .title{
+                font-size: 13px;
+                font-weight: 700;
+                letter-spacing: -0.18px;
+                color: $navy-blue-light30-clr;
+                margin-bottom: 0.2rem;
+            }
+            .txt{
+                font-size: 13px;
+                color: $navy-blue-light50-clr;
+                margin-bottom: 1rem;
+            }
+            input, textarea{
+                background: $navy-blue-light70-clr;
+                border: none;
+                width: 100%;
+                border-radius: 5px;
+                padding: 10px;
+                font-family: 'Jost', sans-serif;
+                color: $navy-blue-light30-clr;
+            }
+            textarea{
+                height: 120px;
+            }
+            input{
+                height: 48px;
+            }
+
+            &.category{
+                position: relative;
+
+                .category-input{
+                    display: flex;
+                    justify-content: space-between;
+                    background: $navy-blue-light70-clr;
+                    padding: 15px 12px;
+                    border-radius: 5px;
+                    font-size: 13px;
+                    color: $navy-blue-light30-clr;
+                    cursor: pointer;
+
+                    &-txt{
+                        text-transform: capitalize;
+                    }
+                }
+                
+                .category-dropdown{  
+                    position: absolute;
+                    top: 120px; 
+                    width: 100%;
+                    display: none;             
+                    background: $white-clr;
+                    border-radius: 10px;
+                    box-shadow: 1px 5px 20px rgba(128, 128, 128, 0.616);
+                    z-index: 1;
+
+                    &.open{
+                        display: block;
+                    }
+    
+                    .category-option{
+                        list-style: none;
+                        display: flex;
+                        justify-content: space-between;
+                        font-size: 16px;
+                        color: $navy-blue-light50-clr;
+                        border-bottom: 2px solid $navy-blue-light70-clr;
+                        cursor: pointer;
+                        padding: 10px 20px;
+
+                                                
+                        .check{
+                            img{
+                                visibility: hidden;
+                            }
+                            &.feature,
+                            &.ui,
+                            &.ux,
+                            &.enhancement,
+                            &.bug,
+                            &.suggestion,
+                            &.planned,
+                            &.in-progress,
+                            &.live{
+                                img{
+                                    visibility: visible;
+                                }
+                            }
+                        }
+                        
+                        &:last-child{
+                            border-bottom: none;
+                        }
+    
+                        &:hover{
+                            color: $pink-clr;
+                        }
+                    }
+                    
+                }
+            }
+
+
+        }
+
+        &-buttons{
+            margin: 1rem 0;
+            .edit-feedback-btn{
+                padding: 10px 16px;
+                border-radius: 10px;
+                margin-bottom: 1rem;
+                text-align: center;
+                font-size: 13px;
+                font-weight: 700;
+                color: $white-clr;
+                cursor: pointer;
+            }
+
+            .cancel-btn{
+                background: $navy-blue-clr;
+
+                &:hover{
+                    background: $navy-blue-light50-clr;
+                }
+            }
+
+            .add-btn{
+                background: $pink-clr;
+
+                &:hover{
+                    background: $btn-hover-clr;
+                }
+            }
+
+            .delete-btn{
+                background: $red-clr;
+
+                &:hover{
+                    background: $delete-hover-clr;
+                }
+            }
+        }
+    }
+    
+}
+
+@media screen and (min-width: 768px) {
+    .edit-feedback-container{
+       
+        padding: 50px 0;
+
+        .edit-feedback{
+            padding: 20px 40px;
+
+            &-icon{
+                top: -25px;
+                
+                img{
+                    width: 56px;
+                }
+            }
+
+            &-header{
+                font-size: 24px;
+                margin: 2rem 0;
+            }
+            &-input{
+                .title, .txt{
+                    font-size: 14px;
+                }
+
+            }
+            &-title, textarea{
+                font-size: 15px;
+            }
+
+            textarea{
+                margin-bottom: 1.5rem;
+            }
+            .category-input{
+                &-txt{
+                    font-size: 15px;
+                }
+            }
+
+
+            &-buttons{
+                display: flex;
+                flex-flow: row-reverse;
+                margin: 0;
+    
+                .edit-feedback-btn{
+                    font-size: 14px;
+                    margin-bottom: 0;
+                }
+    
+                .cancel-btn{
+                    margin-right: 1rem;
+                }
+    
+                .delete-btn{
+                    margin-right: auto;
+                }
+            }
+        }
+    }
+
+}
+

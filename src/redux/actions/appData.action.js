@@ -38,4 +38,16 @@ export const replyToCommentAction = (id,reply)=>({
     }
 });
 
+export const editFeedbackAction = (id,changes)=>({
+    type: 'SAVE_CHANGES',
+    payload: {
+        id: id,
+        changes: changes
+    }
+});
+export const deleteFeedbackAction = (id)=>({
+    type: 'DELETE_FEEDBACK',
+    payload: id
+});
+
 
