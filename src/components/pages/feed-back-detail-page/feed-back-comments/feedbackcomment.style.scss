@@ -1,0 +1,107 @@
+
+$navy-blue-clr: #373f68;
+$navy-blue-light30-clr: #3a4374;
+$navy-blue-light50-clr: #647196;
+$navy-blue-light70-clr: #f2f4ff;
+$navy-blue-light80-clr: #f7f8fd;
+$blue-clr: #4661e6;
+$blue-light-clr: #62bcfa;
+$pink-clr: #ad1fea;
+$orange-light-clr: #f49f85;
+$white-clr: #ffffff;
+
+
+.comment{
+    padding-bottom: 2rem;
+    border-bottom: solid 1px #8c92b362;
+    margin-bottom: 1.5rem;
+
+    &:last-child{
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+
+    &-header{
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+    
+        .author{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            &-avatar{
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+            }
+        
+            &-profile{
+        
+                padding-left: 1rem;
+        
+                &-name{
+                    font-size: 13px;
+                    font-weight: 700;
+                    color: $navy-blue-clr;
+                }
+        
+                &-username{
+                    font-size: 13px;
+                    color: $navy-blue-light50-clr;
+                }
+            }
+        }
+        
+        .reply{
+            font-size: 13px;
+            font-weight: 600;
+            color: $blue-clr;
+            cursor: pointer;
+
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &-txt{
+        font-size: 13px;
+        color: $navy-blue-light50-clr;
+    }
+
+    &:last-child{
+        border: none;
+    }
+
+    .feedback-reply-to{
+        display: none;
+
+        &.open{
+            display: block;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .comment{
+        &-txt{
+            font-size: 15px;
+            padding-left: 4.5rem;
+        }
+
+        &-header{
+
+            .author{
+                
+                &-profile{
+                    padding-left: 2rem;
+                    &-name, &-username{
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,49 @@
+$pink-clr: #ad1fea;
+
+.comment-reply{
+    padding-left: 25px;
+    padding-bottom: none;
+    margin-top: 24px;
+
+    .comment-header{
+        .reply{
+            cursor: pointer;
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .reply-to{
+        font-weight: 700;
+        color: $pink-clr;
+    }
+
+    &-to{
+        display: none;
+
+        &.open{
+            display: block;
+        }
+    }
+
+}
+
+@media screen and (min-width: 996px) {
+    .comment-reply{
+        width: 621px;
+        padding: 0;
+        margin-left: 40px;
+
+        &-to{
+            .reply-to-comment{
+                textarea{
+                    width: 416px;
+                }
+                .post-reply-btn{
+                    margin-left: 1rem;
+                }
+            }
+        }
+    }
+}

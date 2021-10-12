@@ -47,6 +47,38 @@ const appDataReducer = (state = app_Data, action)=>{
                 productRequests: [...tempProductRequests]
             }
         }
+        case 'POST_COMMENT':{
+            const reqIndex = state.productRequests.findIndex(request=>request.id===action.payload.id);
+            let newproductRequests = [...state.productRequests];
+            let tempReq = {...newproductRequests[reqIndex]};
+            let tempComments = [...tempReq.comments];
+            tempComments.push(action.payload.comment);
+            tempReq.comments=tempComments;
+            newproductRequests[reqIndex]=tempReq;
+            return{
+                ...state,
+                productRequests: [...newproductRequests]
+            }
+        }
+        case 'REPLY_TO_COMMENT':{
+            let newproductRequests = [...state.productRequests];
+            const reqIndex = newproductRequests.findIndex(request=>request.id===action.payload.id.requestID);
+            let newReq = {...newproductRequests[reqIndex]};
+            let newReqComments = [...newReq.comments];
+            let commentIndex = newReqComments.findIndex(comment=>comment.id===action.payload.id.commentID);
+            let newComment = {...newReqComments[commentIndex]};
+            let newCommentReps = newComment.replies ? [...newComment.replies] :newComment.replies =[];
+            newCommentReps.push(action.payload.reply);        
+            newComment.replies =newCommentReps;
+            newReqComments[commentIndex]=newComment;
+            newReq.comments=newReqComments;
+            newproductRequests[reqIndex]=newReq;            
+            return{
+                ...state,
+                productRequests: [...newproductRequests]
+            }
+        }
+
 
         default: return state;
     }

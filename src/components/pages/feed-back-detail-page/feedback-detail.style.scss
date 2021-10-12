@@ -1,0 +1,96 @@
+$navy-blue-clr: #373f68;
+$navy-blue-light30-clr: #3a4374;
+$navy-blue-light50-clr: #647196;
+$navy-blue-light70-clr: #f2f4ff;
+$navy-blue-light80-clr: #f7f8fd;
+$blue-clr: #4661e6;
+$blue-light-clr: #62bcfa;
+$pink-clr: #ad1fea;
+$orange-light-clr: #f49f85;
+$white-clr: #ffffff;
+$edit-hover-clr: #7C91F9;
+
+.feedback-page{
+    background: $navy-blue-light70-clr;
+    padding: 0 24px;
+    padding-bottom: 3rem;
+
+    .comments-container{
+        background: $white-clr;
+        padding: 30px 25px;
+        border-radius: 10px;
+        margin-bottom: 1.5rem;
+
+        .comments-total{
+            font-size: 18px;
+            letter-spacing: -0.25px;
+            color: $navy-blue-light30-clr;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+    }
+}
+
+.feedback-page-header{
+    padding: 30px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-btn{
+        padding: 10px 16px;
+        background: $blue-clr;
+        border-radius: 10px;
+        font-size: 13px;
+        font-weight: 700;
+        color: $white-clr;
+        cursor: pointer;
+
+        &:hover{
+            background: $edit-hover-clr;
+        }
+
+    }
+
+    &-back{
+        cursor: pointer;
+
+        .back-link{
+           
+            &-txt{
+                font-size: 13px;
+                font-weight: 700;
+                color: $navy-blue-light50-clr;
+                padding-left: 0.5rem;
+            }
+        }  
+    }
+
+    
+}
+
+@media screen and (min-width: 768px) {
+    .feedback-page{
+        padding: 0 39.5px;
+    }
+}
+
+@media screen and (min-width: 996px) {
+    .feedback-page{
+        padding: 39.5px;
+
+        .comments-container{
+            width: 100%;
+            max-width: 730px;
+            margin: 0 auto 2rem auto;
+            padding: 32px;
+        }
+
+        .feedback-page-header{
+            width: 100%;
+            max-width: 730px;
+            margin: 0 auto;
+        }
+    }
+}
+

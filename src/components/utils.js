@@ -20,4 +20,13 @@ export const sortbyData=(sortBy, requestsData)=>{
     }
 };
 
+export const toggleReply =(reply,func)=>{ if (reply===''){ 
+    func('open');
+    return reply;
+    } else {
+        func('');
+        return reply;
+    }
+};
+
 

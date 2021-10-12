@@ -1,0 +1,92 @@
+$navy-blue-clr: #373f68;
+$navy-blue-light30-clr: #3a4374;
+$navy-blue-light50-clr: #647196;
+$navy-blue-light70-clr: #f2f4ff;
+$navy-blue-light80-clr: #f7f8fd;
+$blue-clr: #4661e6;
+$blue-light-clr: #62bcfa;
+$pink-clr: #ad1fea;
+$orange-light-clr: #f49f85;
+$white-clr: #ffffff;
+$btn-hover-clr: #C75AF6;
+$btn-txt-clr: #F2F4FE;
+
+.add-comment{
+    background: $white-clr;
+    margin: 0 auto 0 auto;
+    border-radius: 10px;
+    padding: 30px 20px;
+
+    h3{
+        font-size: 18px;
+        letter-spacing: -0.25px;
+        color: $navy-blue-light30-clr;
+        margin-bottom: 1.5rem;
+    }
+
+    textarea{
+        width: 100%;
+        height: 80px;
+        background: $navy-blue-light70-clr;
+        border-radius: 5px;
+        border: none;
+        padding: 10px 15px;
+        font-family: 'Jost', sans-serif;
+        color: $navy-blue-light50-clr;
+
+        &:hover{
+            border: 1px solid $blue-clr;
+        }
+        &::placeholder{
+            color: #8C92B3;
+            font-family: 'Jost', sans-serif;
+        }
+    }
+    .add-comment-footer{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 1rem;
+
+        .footer-btn{
+            padding: 10px 16px;
+            background: $pink-clr;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            color: $btn-txt-clr;
+            cursor: pointer;
+
+            &:hover{
+                background: $btn-hover-clr;
+            }
+        }
+
+        .footer-txt{
+            font-size: 13px;
+            color: $navy-blue-light50-clr;
+        }
+    }
+}
+
+@media screen and (min-width:996px) {
+    .add-comment{
+        width: 100%;
+        max-width: 730px;
+        margin: 0 auto;
+        padding: 33px;
+
+        textarea{
+            font-size: 15px;
+        }
+
+        .add-comment-footer{
+            .footer-btn{
+                font-size: 14px;
+            }
+            .footer-txt{
+                font-size: 15px;
+            }
+        }
+    }
+}
