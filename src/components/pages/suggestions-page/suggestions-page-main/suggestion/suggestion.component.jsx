@@ -6,12 +6,12 @@ import './suggestion.style.scss';
 import { upvoterAction } from '../../../../../redux/actions/upvote.action';
 
 export const commentsCount = (comments)=>{
-    let count = comments.length;
-    if(comments.length>0){
+    let count = 0;
+    if(comments && comments.length>0){
         comments.map((comment)=>
             Object.keys(comment).includes('replies') ?                 
-             count += comment.replies.length
-             : count
+             count = comments.length + comment.replies.length
+             : count = comments.length
             );
         return count;
     } else return count;

@@ -18,3 +18,7 @@ export const sortByMostVotes = () =>({
     type: 'most votes'
 });
 
+export const addFeedbackAction = (feedback)=>({
+    type: 'ADD_FEEDBACK',
+    payload: feedback
+});

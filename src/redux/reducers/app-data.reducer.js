@@ -39,6 +39,14 @@ const appDataReducer = (state = app_Data, action)=>{
                 productRequests: [...newproductRequests]
             }
         }
+        case 'ADD_FEEDBACK':{
+            const tempProductRequests = [...state.productRequests];
+            tempProductRequests.push(action.payload);
+            return{
+                ...state,
+                productRequests: [...tempProductRequests]
+            }
+        }
 
         default: return state;
     }

@@ -1,6 +1,6 @@
 import { commentsCount } from "./pages/suggestions-page/suggestions-page-main/suggestion/suggestion.component";
 
-export const filterRequests = (arr,filter)=> arr.filter(item=>item.category===filter ? item : null);
+export const filterRequests = (arr,filter)=> arr.filter(item=>item.category.toLowerCase()===filter ? item : null);
 
 export const sortbyData=(sortBy, requestsData)=>{
     switch(sortBy){

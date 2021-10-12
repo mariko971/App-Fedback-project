@@ -1,12 +1,28 @@
 import React, {useState} from "react";
 import { withRouter } from "react-router";
+import { connect } from "react-redux";
 
 import "./new-feedback.style.scss";
+import { addFeedbackAction } from "../../../redux/actions/appData.action";
 
-const NewFeedbackForm = (props) => {
+const NewFeedbackForm = ({history, productRequests,addFeedbackAction}) => {
   const [category, setCategory] = useState('');
   const [dropdown, toggleDropdown] = useState({open:false, class: ''});
-  const [value, setValue] = useState('');
+  const [detailValue, setDetailValue] = useState('');
+  const [titleValue, setTitleValue] = useState('');
+
+
+  const newID= ()=> Math.max(...productRequests.map(req=>req.id))+1;
+  
+
+  const newFeedback ={
+      id:newID(),
+      title: titleValue,
+      category: category,
+      upvotes: 0,
+      status: 'suggestion',
+      description: detailValue,
+  };
 
   const handleClick = (option)=>{
     setCategory(option);
@@ -21,18 +37,27 @@ const NewFeedbackForm = (props) => {
     }      
   };
 
-  const handleChange = (e)=> setValue(e.target.value);
+  const handleChangeDetail = (e)=> setDetailValue(e.target.value);
+  const handleChangeTitle = (e)=> setTitleValue(e.target.value);
+
+  console.log(detailValue)
+  console.log(titleValue)
 
   const checkSelected = cat => category===cat ? 
     <p>
       <img src="/assets/shared/icon-check.svg" alt="checked icon" />
     </p>
     :
-    null;  
+    null; 
+    
+    const addFeedback = ()=>{
+      addFeedbackAction(newFeedback);
+      history.push('/');
+    };
 
   return (
     <div className="new-feedback-container">
-      <div className="back-link" onClick={() => props.history.push("/")}>
+      <div className="back-link" onClick={() => history.push("/")}>
         <img
           src="/assets/shared/icon-arrow-left.svg"
           alt="left arrow"
@@ -48,7 +73,10 @@ const NewFeedbackForm = (props) => {
         <div className="new-feedback-input title">
           <p className="title">Feedback Title</p>
           <p className="txt">Add a short, descriptive headline</p>
-          <input type="text" name="feedback title" className="feedback-title" />
+          <input type="text" value={titleValue} 
+          name="feedback title" 
+          className="feedback-title" 
+          onChange={handleChangeTitle}/>
         </div>
         <div className="new-feedback-input category">
           <p className="title">Category</p>
@@ -100,12 +128,12 @@ const NewFeedbackForm = (props) => {
             Include any specific comments on what should be improved, added,
             etc.
           </p>
-          <textarea value={value} onChange={handleChange}></textarea>
+          <textarea value={detailValue} onChange={handleChangeDetail}></textarea>
           <div className="new-feedback-buttons">            
-            <p className="feedback-btn add-btn">
+            <p className="feedback-btn add-btn" onClick={()=>addFeedback()}>
               Add Feedback
             </p>
-            <p className="feedback-btn cancel-btn" onClick={() => props.history.push("/")}>
+            <p className="feedback-btn cancel-btn" onClick={() => history.push("/")}>
               Cancel
             </p>
           </div>
@@ -115,4 +143,12 @@ const NewFeedbackForm = (props) => {
   );
 };
 
-export default withRouter(NewFeedbackForm);
+const mapDispatchToProps = dispatch =>({
+  addFeedbackAction: (feedback)=> dispatch(addFeedbackAction(feedback))
+});
+const mapStateToProps = state =>({
+  currentUser: state.appData.currentUser,
+  productRequests: state.appData.productRequests
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(withRouter(NewFeedbackForm));

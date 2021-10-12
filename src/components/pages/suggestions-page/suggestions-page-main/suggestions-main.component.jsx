@@ -11,7 +11,7 @@ import { filterRequests } from '../../../utils';
 
 const SuggestionsMain = (props)=> {
     const {appData: {productRequests}, suggestionsFilter: {filter}} =props;
-    const requestsData = filter==='all' ? productRequests: filterRequests(productRequests, filter);
+    const requestsData = filter==='all' ? productRequests : filterRequests(productRequests,filter);
         return(
             <div className='suggestion-main-wrapper'>
                 <SuggestionsHeader/>
