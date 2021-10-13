@@ -6,6 +6,7 @@ import SuggestionsPage from './components/pages/suggestions-page/suggestions-pag
 import NewFeedbackForm from './components/pages/new-feedback/new-feedback.component';
 import FeedbackDetailPage from './components/pages/feed-back-detail-page/feedback-detail.component';
 import FeedbackEditForm from './components/pages/feedback-edit/edit-feedback.component';
+import RoadmapPage from './components/pages/roadmap-page/roadmap.component';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Route exact path='/new-feedback' component = {NewFeedbackForm}/>
       <Route exact path='/feedback/:requestID' component = {FeedbackDetailPage}/>
       <Route  path='/feedback/:requestID/edit' component = {FeedbackEditForm}/>
+      <Route  path='/roadmap' component = {RoadmapPage}/>
     </div>
   );
 };

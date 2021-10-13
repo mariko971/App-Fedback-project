@@ -1,0 +1,214 @@
+$navy-blue-clr: #373f68;
+$navy-blue-light30-clr: #3a4374;
+$navy-blue-light30-40: #3a437366;
+$navy-blue-light50-clr: #647196;
+$navy-blue-light70-clr: #f2f4ff;
+$navy-blue-light80-clr: #f7f8fd;
+$blue-clr: #4661e6;
+$blue-light-clr: #62bcfa;
+$pink-clr: #ad1fea;
+$orange-light-clr: #f49f85;
+$white-clr: #ffffff; 
+$btn-hover-clr: #C75AF6;
+$btn-txt-clr: #F2F4FE;
+
+.roadmap{
+    background: $navy-blue-light70-clr;
+    &-header{
+        background: $navy-blue-clr;
+        display: flex;
+        padding: 20px;
+        justify-content: space-between;
+        align-items: center;
+        &-btn{
+            padding: 10px 16px;
+            background: $pink-clr;
+            color: $btn-txt-clr;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+
+            &:hover{
+                background: $btn-hover-clr;
+            }
+        }
+
+        &-back{
+            .back-link{
+                cursor: pointer;
+                &-txt{
+                    font-size: 13px;
+                    font-weight: 700;
+                    color: $white-clr;
+                    padding-left: 0.5rem;
+
+                    &:hover{
+                        text-decoration: underline;
+                    }
+                }
+            } 
+        }
+
+        &-title{
+            font-size: 18px;
+            font-weight: 700;
+            color: $white-clr;
+            letter-spacing: -0.25px;
+            margin-top: 0.3rem;
+        }
+    }
+
+    &-nav{
+        display: flex;
+        justify-content: space-evenly;
+        border-bottom: 1px solid #979797;
+        
+        &-link{
+            height: 60px;
+            width: 125px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            p{
+                font-size: 13px;
+                font-weight: 700;
+                letter-spacing: -0.18px;
+                color: $navy-blue-light30-40;
+                text-align: center;
+
+                
+                align-items: center;
+            }
+
+            &.planned{
+                border-bottom: 4px solid $orange-light-clr;
+                p{
+                    color: $navy-blue-light30-clr;
+                }
+            }
+            &.in-progress{
+                border-bottom: 4px solid $pink-clr;
+                p{
+                    color: $navy-blue-light30-clr;
+                }
+            }
+            &.live{
+                border-bottom: 4px solid $blue-clr;
+                p{
+                    color: $navy-blue-light30-clr;
+                }
+            }
+        }
+    }
+
+    &-requests{
+
+        &-big{
+            display: none;
+        }
+
+        &-header{
+            padding: 15px 30px 5px 30px;
+            &-h2{
+                font-size: 18px;
+                letter-spacing: -0.25px;
+                color: $navy-blue-light30-clr;
+                padding-bottom: 5px;
+            }
+            &-txt{
+                font-size: 13px;
+                color: $navy-blue-light50-clr;
+            }
+
+        }
+    }
+  
+}
+
+@media screen and (min-width: 768px) {
+    .roadmap{
+        padding: 50px 39.5px;
+
+
+
+        &-header{
+            border-radius: 10px;
+            height: 113px;
+            padding: 30px;
+
+            &-title{
+                font-size: 24px;
+                letter-spacing: -0.33px;
+            }
+
+            &-back{
+                .back-link{
+                    &-txt{
+                        font-size: 14px;
+                    }
+                } 
+            }
+
+            &-btn{
+                padding: 11.6px 25px;
+                font-size: 14px;
+
+            }
+        }
+
+        &-requests{
+
+            &-big{
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                column-gap: 10px;
+            }
+            &-mobile{
+                display: none;
+            }
+
+            &-header{
+                padding: 15px 0 5px 0;
+                &-h2, &-txt{
+                    font-size: 14px;
+                }
+            }
+        }
+
+        &-nav{
+            display: none;
+        }
+    }
+}
+
+@media screen and (min-width: 996px) {
+    .roadmap{
+        max-width: 1110px;
+        width: 100%;
+        margin: 40px auto;
+        padding: 30px;
+
+        &-requests{
+            &-big{
+                column-gap: 30px;
+            }
+            &-header{
+                &-h2{
+                    font-size: 18px;
+                }
+                &-txt{
+                    font-size: 16px;
+                }
+            }
+        }
+
+    }
+}
+
+@media screen and (min-width: 1110px) {
+    .roadmap{
+        padding: 0;
+    }
+}
