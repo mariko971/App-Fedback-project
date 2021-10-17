@@ -1,4 +1,14 @@
-import { commentsCount } from "../../components/pages/suggestions-page/suggestions-page-main/suggestion/suggestion.component";
+import { commentsCount } from "../../components/utils";
+
+export const updateRequestsAction = (requests)=>({
+    type: 'UPDATE_REQUESTS',
+    payload: requests
+});
+
+export const updateCurrentUserAction = (user)=>({
+    type: 'UPDATE_CURRENT_USER',
+    payload: user
+});
 
 export const sortByLeastVotes = () =>({
     type: 'least votes'

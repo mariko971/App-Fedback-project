@@ -1,6 +1,6 @@
 
 const sortInit = {
-    sortBy: 'most votes'
+    sortBy: ''
 };
 
 const sortByReducer = (state = sortInit, action)=>{

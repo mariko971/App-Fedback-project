@@ -1,8 +1,22 @@
-const app_Data = require('../data.json');
 
+
+
+const app_Data = {productRequests: [], currentUser:{}};
 
 const appDataReducer = (state = app_Data, action)=>{
     switch(action.type){
+        case 'UPDATE_REQUESTS': {
+            return {
+                ...state,
+                productRequests: [...action.payload]
+            }
+        }
+        case 'UPDATE_CURRENT_USER': {
+            return {
+                ...state,
+                currentUser: {...action.payload}
+            }
+        }
         case 'most votes':{
             return {
                 ...state,
