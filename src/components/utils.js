@@ -1,6 +1,18 @@
-import { commentsCount } from "./pages/suggestions-page/suggestions-page-main/suggestion/suggestion.component";
+// import { commentsCount } from "./pages/suggestions-page/suggestions-page-main/suggestion/suggestion.component";
 
 export const filterRequests = (arr,filter)=> arr.filter(item=>item.category.toLowerCase()===filter ? item : null);
+
+export const commentsCount = (comments)=>{
+    let count = 0;
+    if(comments && comments.length>0){
+        comments.map((comment)=>
+            Object.keys(comment).includes('replies') ?                 
+             count = comments.length + comment.replies.length
+             : count = comments.length
+            );
+        return count;
+    } else return count;
+}
 
 export const sortbyData=(sortBy, requestsData)=>{
     switch(sortBy){
@@ -20,6 +32,8 @@ export const sortbyData=(sortBy, requestsData)=>{
     }
 };
 
+
+
 export const toggleReply =(reply,func)=>{ if (reply===''){ 
     func('open');
     return reply;
@@ -28,5 +42,21 @@ export const toggleReply =(reply,func)=>{ if (reply===''){
         return reply;
     }
 };
+
+export const newComments = (reply,productRequests,commentID,requestID)=>{
+    const suggestionReqIndex = productRequests.findIndex(req=>req.id===parseInt(requestID));
+    const suggestionReq = productRequests[suggestionReqIndex];
+    const commIndex = suggestionReq.comments.findIndex(com=>com.id===commentID);
+    const seqComments = [...suggestionReq.comments];
+    const seqComment = seqComments[commIndex];
+    console.log(commIndex)
+    const seqCommentReps = seqComment.replies ? [...seqComment.replies, reply]
+        : 
+        [reply];
+        seqComment.replies =seqCommentReps;
+        seqComments[commIndex] =seqComment;
+    return seqComments;
+};
+
 
 
