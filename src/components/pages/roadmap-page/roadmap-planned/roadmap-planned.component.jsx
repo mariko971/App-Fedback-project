@@ -3,20 +3,22 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 
 import './roadmap-planned.style.scss';
-import { commentsCount } from '../../suggestions-page/suggestions-page-main/suggestion/suggestion.component';
-import { upvoterAction } from '../../../../redux/actions/upvote.action';
-
+import { commentsCount } from '../../../utils';
+import { upvoteActionFire } from '../../../../firebase/firebase.utils';
 
 
 const RoadmapPlanned = (props)=>{
-    const {id,title, description, category, upvotes, comments, appDataReducer} = props;
+    const {id,title, description, category, upvotes, comments, productRequests, currentUser} = props;
+
+    const voted = currentUser.votes.includes(`${id}`) ? 'voted' : '';
+    const request = productRequests.findIndex(req=>req.id===id);
+    const voteAction = ()=> !voted ?  upvoteActionFire(productRequests[request]) : null;
     
     return(
         <div className="planned">            
             <div className="planned-suggestion planned">            
-                <div className="planned-suggestion-upvote" onClick={()=>appDataReducer(id)}>
+                <div className={`planned-suggestion-upvote ${voted}`} onClick={()=>voteAction()}>
                     <div className="planned-suggestion-upvote-arrow">
-                    <img  src="/assets/shared/icon-arrow-up.svg" alt="up arrow"/>
                     </div>               
                     <p className="planned-suggestion-upvote-votes">{upvotes}</p> 
                 </div>
@@ -41,8 +43,9 @@ const RoadmapPlanned = (props)=>{
     )
 };
 
-const mapDispatchToProps = dispatch =>({
-    appDataReducer: id => dispatch(upvoterAction(id))
-    });
+const mapStateToProps = state =>({
+    productRequests: state.appData.productRequests,
+    currentUser: state.appData.currentUser
+});
 
-export default connect(null,mapDispatchToProps)(withRouter(RoadmapPlanned));
+export default connect(mapStateToProps)(withRouter(RoadmapPlanned));

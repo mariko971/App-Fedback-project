@@ -3,28 +3,22 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 
 import './suggestion.style.scss';
-import { upvoterAction } from '../../../../../redux/actions/upvote.action';
-
-export const commentsCount = (comments)=>{
-    let count = 0;
-    if(comments && comments.length>0){
-        comments.map((comment)=>
-            Object.keys(comment).includes('replies') ?                 
-             count = comments.length + comment.replies.length
-             : count = comments.length
-            );
-        return count;
-    } else return count;
-}
+import { commentsCount } from '../../../../utils';
+import { upvoteActionFire } from '../../../../../firebase/firebase.utils';
 
 const Suggestion = (props)=>{
-    const {id, title, description, category, upvotes, comments, appDataReducer} = props;
+    const {id, title, description, category, upvotes, comments, productRequests, currentUser} = props;
+    const voted = currentUser.votes.includes(id.toString()) ? 'voted' : '';
+    const request = productRequests.findIndex(req=>req.id===id);
+
+    const voteAction = ()=> !voted ? upvoteActionFire(productRequests[request]) : null;
     
     return(
         <div className="suggestion-container" >
-            <div className="suggestion-upvote" onClick={()=>appDataReducer(id)}>
-                <img  src="/assets/shared/icon-arrow-up.svg" alt="up arrow"/>
-                <p className="suggestion-upvote-votes">{upvotes}</p> 
+            <div className={`suggestion-upvote-top ${voted}`} onClick={()=>voteAction()}>
+                <div className="suggestion-upvote-top-arrow">
+                </div>  
+                <p className="suggestion-upvote-top-votes">{upvotes}</p> 
             </div>
             <div className="suggestion-main" onClick={()=>props.history.push(`/feedback/${id}`)}>
                 <h3 className='suggestion-main-title'>
@@ -34,18 +28,26 @@ const Suggestion = (props)=>{
                     {description}
                 </p>
                 <p className='suggestion-main-topic body-3'>
-                    {category}
+                    {category==='ux'||category==='ui' ? category.toUpperCase() : category}
                 </p>
             </div>
-            <div className="suggestion-comments">
-                <img className="suggestion-comments-icon" src="/assets/shared/icon-comments.svg" alt="comments" />
-                <p className="suggestion-comments-count">{commentsCount(comments)}</p>
+            <div className="suggestion-footer">
+                <div className={`suggestion-upvote ${voted}`} onClick={()=>voteAction()}>
+                    <div className="suggestion-upvote-arrow">
+                    </div>  
+                    <p className="suggestion-upvote-votes">{upvotes}</p> 
+                </div>
+                <div className="suggestion-comments">
+                    <img className="suggestion-comments-icon" src="/assets/shared/icon-comments.svg" alt="comments" />
+                    <p className="suggestion-comments-count">{commentsCount(comments)}</p>
+                </div>
             </div>
         </div>
     )
 }
-const mapDispatchToProps = dispatch =>({
-appDataReducer: id => dispatch(upvoterAction(id))
-});
 
-export default connect(null, mapDispatchToProps)(withRouter(Suggestion));
+const mapStateToProps = state =>({
+    productRequests: state.appData.productRequests,
+    currentUser: state.appData.currentUser
+});
+export default connect(mapStateToProps)(withRouter(Suggestion));

@@ -19,8 +19,11 @@ const SuggestionsHeader = ({
 }) => {
 
 	const [open, toggleOpen] = useState({toggle: false, dropdown: ''});
-	const [sorter, toggleSorter] = useState('most-votes');
+	const [sorter, toggleSorter] = useState('');
 
+  // useEffect(()=>{
+  //   sortByMostVotes(sorter)
+  // },[sorter]);
 
 	const toggleDropdown = ()=>{
 		if(!open.toggle){
@@ -33,11 +36,11 @@ const SuggestionsHeader = ({
   const checkSelected = (option,opt) =>option === opt ? opt : null;
 
 
-  const sortFilter = (sort, sortby)=>{
+  const sortFilter = (sortby, sortbyAction)=>{
     toggleDropdown();
-    sortBytoggle(sort);
-    sortby();
-    toggleSorter(sort.split(' ').join('-'));
+    sortBytoggle(sortby);
+    sortbyAction();
+    toggleSorter(sortby.split(' ').join('-'));
   };
 
 	
@@ -96,7 +99,7 @@ const SuggestionsHeader = ({
           </p>
           <img
             className="suggestions-header-drp"
-            src="assets/shared/icon-arrow-down.svg"
+            src="assets/shared/icon-arrow-down-white.svg"
             alt="arrow down"
           />
         </span>

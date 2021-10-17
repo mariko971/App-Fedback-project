@@ -9,7 +9,7 @@ $pink-clr: #ad1fea;
 $orange-light-clr: #f49f85;
 $white-clr: #ffffff;
 $upvote-hover-clr: #CFD7FF;
-
+$live-clr: #62BCFA;
 
 .live{
 
@@ -26,15 +26,6 @@ $upvote-hover-clr: #CFD7FF;
         border-radius: 15px;
         padding: 25px;
         position: relative;
-        cursor: pointer;
-
-        &:hover{
-            .live-suggestion-main{
-                &-title{
-                    color: $blue-clr;
-                }
-            }
-        }
     
         &.live::before{
             content: '';
@@ -46,7 +37,7 @@ $upvote-hover-clr: #CFD7FF;
             height: 3%;
             border-top-left-radius: 10px;
             border-top-right-radius: 10px;
-            background: $blue-clr;
+            background: $live-clr;
             z-index: 1;
         }
     
@@ -68,7 +59,7 @@ $upvote-hover-clr: #CFD7FF;
                 margin-right: 1rem;
             }
             &.live-clr::before{
-                background-color: $blue-clr;
+                background-color: $live-clr;
             }
         }
     
@@ -79,6 +70,11 @@ $upvote-hover-clr: #CFD7FF;
                 letter-spacing: -0.18px;
                 color: $navy-blue-clr;
                 margin-bottom: 0.5rem;
+                cursor: pointer;
+
+                &:hover{
+                    color: $blue-clr;
+                }
             }
     
             &-txt{
@@ -122,10 +118,27 @@ $upvote-hover-clr: #CFD7FF;
             bottom: 20px;
             display: flex;
             background: $navy-blue-light70-clr;
-            padding: 10px 15px;
+            padding: 10px 17px;
             border-radius: 10px;
             align-items: center;
+            justify-content: space-between;
+            width: 69px;
+            height: 40px;
             cursor: pointer;
+
+            &.voted{
+                background: $blue-clr;
+                cursor: default;
+                &:hover{
+                    background: $blue-clr;
+                }
+                .live-suggestion-upvote-votes{
+                   color: $white-clr;
+                }
+                .live-suggestion-upvote-arrow{
+                    background: url('../../../../assets/icon-arrow-up-white.svg') no-repeat center;
+                }
+            }
 
             &:hover{
                 background: $upvote-hover-clr;
@@ -135,6 +148,9 @@ $upvote-hover-clr: #CFD7FF;
                 display: flex;
                 align-items: center;
                 padding-right: 0.5rem;
+                background: url('../../../../assets/icon-arrow-up-blue.svg') no-repeat center;
+                height: 10px;
+                width: 10px;
             }
     
             &-votes{

@@ -25,15 +25,7 @@ $upvote-hover-clr: #CFD7FF;
         border-radius: 15px;
         padding: 25px;
         position: relative;
-        cursor: pointer;
 
-        &:hover{
-            .inprogress-suggestion-main{
-                &-title{
-                    color: $blue-clr;
-                }
-            }
-        }
     
         &.progress::before{
             content: '';
@@ -78,6 +70,11 @@ $upvote-hover-clr: #CFD7FF;
                 letter-spacing: -0.18px;
                 color: $navy-blue-clr;
                 margin-bottom: 0.5rem;
+                cursor: pointer;
+
+                &:hover{
+                    color: $blue-clr;
+                }
             }
     
             &-txt{
@@ -121,10 +118,27 @@ $upvote-hover-clr: #CFD7FF;
             bottom: 20px;
             display: flex;
             background: $navy-blue-light70-clr;
-            padding: 10px 15px;
+            padding: 10px 17px;
             border-radius: 10px;
             align-items: center;
+            justify-content: space-between;
             cursor: pointer;
+            height: 40px;
+            width: 69px;
+
+            &.voted{
+                background: $blue-clr;
+                cursor: default;
+                &:hover{
+                    background: $blue-clr;
+                }
+                .inprogress-suggestion-upvote-votes{
+                   color: $white-clr;
+                }
+                .inprogress-suggestion-upvote-arrow{
+                    background: url('../../../../assets/icon-arrow-up-white.svg') no-repeat center;
+                }
+            }
 
             &:hover{
                 background: $upvote-hover-clr;
@@ -134,6 +148,9 @@ $upvote-hover-clr: #CFD7FF;
                 display: flex;
                 align-items: center;
                 padding-right: 0.5rem;
+                background: url('../../../../assets/icon-arrow-up-blue.svg') no-repeat center;
+                height: 10px;
+                width: 10px;
             }
     
             &-votes{

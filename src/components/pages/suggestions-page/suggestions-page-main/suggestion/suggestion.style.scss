@@ -5,6 +5,7 @@ $navy-blue-light70-clr: #f2f4ff;
 $blue-clr: #4661e6;
 $white-clr: #ffffff;
 $upvote-hover-clr: #CFD7FF;
+$title-clr: #3A4374;
 
 
 .suggestion-container{
@@ -24,12 +25,57 @@ $upvote-hover-clr: #CFD7FF;
         }
     }
 
+    .suggestion-upvote-top{        
+            display: none;
+            justify-content: space-evenly;
+            width: 69px;
+            height: 32px;
+            background: $navy-blue-light70-clr;
+            padding: 0;
+            border-radius: 10px;
+            align-items: center;
+            cursor: pointer;
+                
+            &:hover{
+                background:$upvote-hover-clr ;
+            }
+    
+            &-votes{
+                font-size: 13px;
+                letter-spacing: -0.18px;
+                font-weight: 700;
+                color: $navy-blue-light30-clr;
+            }
+            &-arrow{
+                display: flex;
+                align-items: center;
+                padding-right: 0.5rem;
+                height: 10px;
+                width: 10px;
+                background: url('../../../../../assets/icon-arrow-up-blue.svg') no-repeat center;
+            }
+            &.voted{
+                background: $blue-clr;
+                cursor: default;
+                &:hover{
+                    background: $blue-clr;
+                }
+                .suggestion-upvote-top-votes{
+                   color: $white-clr;
+                }
+                .suggestion-upvote-top-arrow{
+                    background: url('../../../../../assets/icon-arrow-up-white.svg') no-repeat center;
+                }
+            }
+            
+    }
+
     .suggestion-main{
 
         &-title{
             font-size: 13px;
             letter-spacing: -0.18px;
-            color: $navy-blue-clr;
+            color: $title-clr;
             margin-bottom: 0.5rem;
         }
 
@@ -40,6 +86,7 @@ $upvote-hover-clr: #CFD7FF;
 
         &-topic{
             font-size: 13px;
+            text-transform: capitalize;
             color: $blue-clr;
             background: $navy-blue-light70-clr;
             display: inline-block;
@@ -49,53 +96,74 @@ $upvote-hover-clr: #CFD7FF;
         }
     }
 
-    .suggestion-comments{
+    .suggestion-footer{
         display: flex;
-        position: absolute;
-        bottom: 25px;
-        right: 25px;
-        align-items: center;
-
-        &-icon{
-            padding-right: 0.5rem;
-            width: 30px;
-            height: 20px;
+        justify-content: space-between;
+        margin-top: 1rem;
+        
+        .suggestion-comments{
+            display: flex;
+            align-items: center;
+    
+            &-icon{
+                padding-right: 0.5rem;
+                width: 30px;
+                height: 20px;
+            }
+            &-count{
+                font-size: 13px;
+                letter-spacing: -0.18px;
+                font-weight: 700;
+                color: $navy-blue-light30-clr;
+            }    
         }
-        &-count{
-            font-size: 13px;
-            letter-spacing: -0.18px;
-            font-weight: 700;
-            color: $navy-blue-light30-clr;
+    
+        .suggestion-upvote{
+            display: flex;
+            justify-content: space-evenly;
+            width: 69px;
+            height: 32px;
+            background: $navy-blue-light70-clr;
+            padding: 0;
+            border-radius: 10px;
+            align-items: center;
+            cursor: pointer;
+                
+            &:hover{
+                background:$upvote-hover-clr ;
+            }
+    
+            &-votes{
+                font-size: 13px;
+                letter-spacing: -0.18px;
+                font-weight: 700;
+                color: $navy-blue-light30-clr;
+            }
+            &-arrow{
+                display: flex;
+                align-items: center;
+                padding-right: 0.5rem;
+                height: 10px;
+                width: 10px;
+                background: url('../../../../../assets/icon-arrow-up-blue.svg') no-repeat center;
+            }
+            &.voted{
+                background: $blue-clr;
+                cursor: default;
+                &:hover{
+                    background: $blue-clr;
+                }
+                .suggestion-upvote-votes{
+                   color: $white-clr;
+                }
+                .suggestion-upvote-arrow{
+                    background: url('../../../../../assets/icon-arrow-up-white.svg') no-repeat center;
+                }
+            }
+    
         }
-
     }
 
-    .suggestion-upvote{
-        position: absolute;
-        bottom: 25px;
-        display: flex;
-        justify-content: space-evenly;
-        width: 69px;
-        height: 32px;
-        background: $navy-blue-light70-clr;
-        padding: 0;
-        border-radius: 10px;
-        align-items: center;
-        cursor: pointer;
-        cursor: pointer;
-            
-        &:hover{
-            background:$upvote-hover-clr ;
-        }
-
-        &-votes{
-            font-size: 13px;
-            letter-spacing: -0.18px;
-            font-weight: 700;
-            color: $navy-blue-light30-clr;
-        }
-
-    }
 }
 
 @media screen and (min-width: 768px) {
@@ -105,6 +173,17 @@ $upvote-hover-clr: #CFD7FF;
         height: 151px;
         display: flex;
         align-items: center;
+
+        .suggestion-upvote-top{            
+            display: flex;
+            position: initial;
+            flex-direction: column;
+            height: 53px;
+            width: 40px;
+            align-items: center;
+            padding: 5px 0;
+            align-self: flex-start;            
+        }
 
         .suggestion-main{
             margin-left: 2rem;
@@ -117,28 +196,22 @@ $upvote-hover-clr: #CFD7FF;
             &-txt{
                 font-size: 16px;
             }
-
         }
 
-        .suggestion-comments{
-            position: initial;
+        .suggestion-footer{
             margin-left: auto;
-            &-count{
-                font-size: 16px;
+            margin-top: 0;
+            .suggestion-comments{
+                position: initial;
+                margin-left: auto;
+                &-count{
+                    font-size: 16px;
+                }
+            }
+            .suggestion-upvote{
+                display: none;
             }
         }
-
-        .suggestion-upvote{
-
-            position: initial;
-            flex-direction: column;
-            height: 53px;
-            width: 40px;
-            align-items: center;
-            padding: 5px 0;
-            align-self: flex-start;
-        }
-
     }
 }
 
@@ -146,7 +219,7 @@ $upvote-hover-clr: #CFD7FF;
     .suggestion-container{
         max-width: 730px;
         
-        .suggestion-upvote{
+        .suggestion-upvote-top{
             max-width: 40px;
             width: 100%;
         }

@@ -22,14 +22,6 @@ $upvote-hover-clr: #CFD7FF;
         padding: 25px;
         position: relative;
         cursor: pointer;
-
-        &:hover{
-            .planned-suggestion-main{
-                &-title{
-                    color: $blue-clr;
-                }
-            }
-        }
     
         &.planned::before{
             content: '';
@@ -74,6 +66,11 @@ $upvote-hover-clr: #CFD7FF;
                 letter-spacing: -0.18px;
                 color: $navy-blue-clr;
                 margin-bottom: 0.5rem;
+                cursor: pointer;
+
+                &:hover{
+                    color: $blue-clr;
+                }
             }
     
             &-txt{
@@ -118,10 +115,27 @@ $upvote-hover-clr: #CFD7FF;
             bottom: 25px;
             display: flex;
             background: $navy-blue-light70-clr;
-            padding: 10px 15px;
+            padding: 10px 17px;
             border-radius: 10px;
             align-items: center;
+            justify-content: space-between;
+            height: 40px;
+            width: 69px;
             cursor: pointer;
+
+            &.voted{
+                background: $blue-clr;
+                cursor: default;
+                &:hover{
+                    background: $blue-clr;
+                }
+                .planned-suggestion-upvote-votes{
+                   color: $white-clr;
+                }
+                .planned-suggestion-upvote-arrow{
+                    background: url('../../../../assets/icon-arrow-up-white.svg') no-repeat center;
+                }
+            }
 
             &:hover{
                 background: $upvote-hover-clr;
@@ -130,6 +144,9 @@ $upvote-hover-clr: #CFD7FF;
                 display: flex;
                 align-items: center;
                 padding-right: 0.5rem;
+                background: url('../../../../assets/icon-arrow-up-blue.svg') no-repeat center;
+                width: 10px;
+                height: 10px;
             }
     
             &-votes{
