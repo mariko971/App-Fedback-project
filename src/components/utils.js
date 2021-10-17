@@ -58,5 +58,18 @@ export const newComments = (reply,productRequests,commentID,requestID)=>{
     return seqComments;
 };
 
+export function validateInfo(values){
+    let errors ={};
+    if(!values.title.trim()){
+       errors.title = `Can't be empty`
+    } 
+    if(!values.description.trim()){
+       errors.description = `Can't be empty`
+    } 
+    if(!values.category.trim()){
+       errors.category = `Select a category`
+    } 
+    return errors;
+}
 
 
