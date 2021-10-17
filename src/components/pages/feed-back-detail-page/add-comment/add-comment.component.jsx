@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import './add-comment.style.scss';
 import { postCommentAction } from "../../../../redux/actions/appData.action";
+import { addCommentFire } from "../../../../firebase/firebase.utils";
 
 const AddCommentForm = ({requestID,postCommentAction,currentUser, productRequests})=>{
     
@@ -17,12 +18,13 @@ const AddCommentForm = ({requestID,postCommentAction,currentUser, productRequest
         id:newID(),
         content: value,
         user: currentUser,
+        comment: []
     };
 
     const handleChange = (e)=> setValue(e.target.value);
 
     const handleSubmit = ()=>{
-       postCommentAction(requestID,newComment);
+       addCommentFire(requestID,newComment);
        setValue('');
     }
     return(

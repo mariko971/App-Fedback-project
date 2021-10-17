@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 import "./edit-feedback.style.scss";
 import { editFeedbackAction, deleteFeedbackAction } from "../../../redux/actions/appData.action";
+import { deleteFeedbackFire, editFeedbackFire } from "../../../firebase/firebase.utils";
 
 const FeedbackEditForm = (props) => {
   const {
@@ -11,8 +12,6 @@ const FeedbackEditForm = (props) => {
     match: {
       params: { requestID },
     },
-    editFeedbackAction,
-    deleteFeedbackAction,
     history
   } = props;
 
@@ -58,24 +57,21 @@ const FeedbackEditForm = (props) => {
     const checkSelected = (option,opt) =>option === opt ? opt : null;
 
     const editedFeedback ={
-      id:request.id,
       title:editTitle,
       category:category,
       status:status,
       description:editDescription,
-      upvotes: request.upvotes,
-      comments: request.comments
     };
 
     const requestId = request.id;
 
     const handleSubmit = ()=>{
-      editFeedbackAction(requestId,editedFeedback);
+      editFeedbackFire(requestId,editedFeedback);
       history.push(`/feedback/${requestID}`);
    }
 
    const deleteSubmit = ()=>{
-     deleteFeedbackAction(requestId);
+     deleteFeedbackFire(requestId);
      history.push('/');
    }
 

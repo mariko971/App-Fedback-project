@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 import "./new-feedback.style.scss";
 import { addFeedbackAction } from "../../../redux/actions/appData.action";
+import { addFeedbackFire } from "../../../firebase/firebase.utils";
 
 const NewFeedbackForm = ({history, productRequests,addFeedbackAction}) => {
   const [category, setCategory] = useState('');
@@ -40,9 +41,6 @@ const NewFeedbackForm = ({history, productRequests,addFeedbackAction}) => {
   const handleChangeDetail = (e)=> setDetailValue(e.target.value);
   const handleChangeTitle = (e)=> setTitleValue(e.target.value);
 
-  console.log(detailValue)
-  console.log(titleValue)
-
   const checkSelected = cat => category===cat ? 
     <p>
       <img src="/assets/shared/icon-check.svg" alt="checked icon" />
@@ -50,8 +48,9 @@ const NewFeedbackForm = ({history, productRequests,addFeedbackAction}) => {
     :
     null; 
     
-    const addFeedback = ()=>{
-      addFeedbackAction(newFeedback);
+    const addFeedback = async()=>{
+      // addFeedbackAction(newFeedback);
+      await addFeedbackFire('productRequests', newFeedback);
       history.push('/');
     };
 

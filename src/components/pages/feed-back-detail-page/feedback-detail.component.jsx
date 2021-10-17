@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
-import { commentsCount } from '../suggestions-page/suggestions-page-main/suggestion/suggestion.component';
+import { commentsCount } from '../../utils';
 
 import Suggestion from '../suggestions-page/suggestions-page-main/suggestion/suggestion.component';
 import FeedbackComment from './feed-back-comments/feed-back-comments.components';
@@ -13,6 +13,7 @@ import './feedback-detail.style.scss';
 const FeedbackDetailPage = (props)=>{
     const {match: {params: {requestID}}, appData: {productRequests}} = props;
     const [requestData] = productRequests.filter(request=> request.id===parseInt(requestID));
+
     return (
       <div className="feedback-page">
         <div className="feedback-page-header">
@@ -35,16 +36,13 @@ const FeedbackDetailPage = (props)=>{
         </div>
         <Suggestion {...requestData} />
         <div className="comments-container">
-          <p className="comments-total">{`${commentsCount(
-            requestData.comments
-          )} Comments`}</p>
-          {
-              
+          <p className="comments-total">{`${commentsCount(requestData.comments)} Comments`}</p>
+          {              
              requestData.comments.map(comment=>{
                 const {id} = comment;
                 return (<FeedbackComment key={id} requestID={requestID} {...comment}/>)
-            }
-                ) 
+              }
+              ) 
           }
         </div>
         <AddCommentForm requestID={requestData.id}/>
