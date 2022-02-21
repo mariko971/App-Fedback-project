@@ -32,22 +32,30 @@ function App(props) {
 
   useEffect(() => {
     const currentUserRef = firestore.collection("user");
+    const collectionRef = firestore.collection("productRequests");
+
     currentUserRef.onSnapshot(async (snapshot) => {
       const currentUserMap = snapshot.docs.reduce((acc, obj) => {
         return (acc = { ...obj.data() });
       }, {});
       updateCurrentUserAction(currentUserMap);
     });
-  }, [updateCurrentUserAction]);
 
-  useEffect(() => {
-    const collectionRef = firestore.collection("productRequests");
     collectionRef.onSnapshot(async (snapshot) => {
       const collectionMap = snapshot.docs.map((doc) => doc.data());
       updateRequestsAction(collectionMap);
       isLoading(false);
     });
-  }, [updateRequestsAction]);
+  }, [updateCurrentUserAction, updateRequestsAction]);
+
+  // useEffect(() => {
+  //   const collectionRef = firestore.collection("productRequests");
+  //   collectionRef.onSnapshot(async (snapshot) => {
+  //     const collectionMap = snapshot.docs.map((doc) => doc.data());
+  //     updateRequestsAction(collectionMap);
+  //     isLoading(false);
+  //   });
+  // }, [updateRequestsAction]);
 
   return (
     <div className="App">
