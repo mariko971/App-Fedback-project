@@ -48,15 +48,6 @@ function App(props) {
     });
   }, [updateCurrentUserAction, updateRequestsAction]);
 
-  // useEffect(() => {
-  //   const collectionRef = firestore.collection("productRequests");
-  //   collectionRef.onSnapshot(async (snapshot) => {
-  //     const collectionMap = snapshot.docs.map((doc) => doc.data());
-  //     updateRequestsAction(collectionMap);
-  //     isLoading(false);
-  //   });
-  // }, [updateRequestsAction]);
-
   return (
     <div className="App">
       <Suspense fallback={<WithSpinner />}>
